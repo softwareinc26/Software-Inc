@@ -2,144 +2,101 @@ import streamlit as st
 
 # 1. Page Configuration
 st.set_page_config(
-    page_title="Software Inc | Dark Edition",
-    page_icon="🌙",
-    layout="wide"
+    page_title="Software Inc",
+    page_icon="💻",
+    layout="wide",
+    initial_sidebar_state="collapsed" # Starts with sidebar closed
 )
 
-# 2. Complete Dark Theme CSS
+# 2. CSS to Hide Menu, Sidebar, and Header
 st.markdown("""
     <style>
+    /* Hide the top right hamburger menu and the footer */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+
+    /* Hide the sidebar button and the sidebar itself */
+    [data-testid="collapsedControl"] {display: none;}
+    section[data-test-id="stSidebar"] {display: none;}
+    
     /* Main Background */
     .stApp {
         background-color: #0E1117 !important;
     }
     
     /* Global Text Color */
-    .stMarkdown, p, span, label, .stSelectbox, .stTextInput {
+    .stMarkdown, p, span {
         color: #E2E8F0 !important;
     }
 
     /* Headings */
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3 {
         color: #FFFFFF !important;
-        font-family: 'Inter', sans-serif;
+        text-align: center;
     }
 
-    /* Sidebar Styling */
-    [data-testid="stSidebar"] {
-        background-color: #161B22 !important;
-        border-right: 1px solid #30363D;
-    }
-    
-    /* Hero Section - Deep Gradient */
+    /* Hero Section */
     .hero-container {
-        padding: 4rem 2rem;
+        padding: 5rem 2rem;
         background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
         border: 1px solid #334155;
         border-radius: 20px;
-        text-align: center;
-        margin-bottom: 3rem;
+        margin-top: 20px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    /* Service Cards */
-    .service-card {
-        background-color: #161B22 !important;
-        padding: 25px;
-        border-radius: 12px;
+    /* Card styling for Portfolio */
+    .portfolio-card {
+        background-color: #161B22;
+        padding: 20px;
+        border-radius: 15px;
         border: 1px solid #30363D;
-        height: 100%;
-        transition: transform 0.3s ease;
-    }
-    .service-card:hover {
-        border-color: #3b82f6;
-        transform: translateY(-5px);
-    }
-
-    /* Input Fields & Forms */
-    input, textarea {
-        background-color: #0D1117 !important;
-        color: white !important;
-        border: 1px solid #30363D !important;
-    }
-
-    /* Buttons */
-    .stButton>button {
-        background: linear-gradient(90deg, #3b82f6, #2563eb) !important;
-        color: white !important;
-        border: none !important;
-        font-weight: bold !important;
+        margin-top: 20px;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# 3. Sidebar Navigation
-st.sidebar.title("🚀 Software Inc")
-page = st.sidebar.radio("Navigate", ["Home", "Services", "Portfolio", "Contact"])
+# 3. Website Content (Everything on one page)
 
-# --- PAGE: HOME ---
-if page == "Home":
-    st.markdown("""
-        <div class="hero-container">
-            <h1 style="font-size: 3rem; margin-bottom: 10px;">Building the Future, <span style="color: #3b82f6;">Line by Line.</span></h1>
-            <p style="font-size: 1.2rem; color: #94A3B8 !important;">Specializing in AI-driven tools, web applications, and campus solutions.</p>
-        </div>
-    """, unsafe_allow_html=True)
+# Hero Section
+st.markdown("""
+    <div class="hero-container">
+        <h1 style="font-size: 3.5rem;">SOFTWARE <span style="color: #3b82f6;">INC.</span></h1>
+        <p style="text-align: center; font-size: 1.3rem; color: #94A3B8 !important;">
+            Specializing in Vision-Based Systems & Management Solutions
+        </p>
+    </div>
+""", unsafe_allow_html=True)
 
-    col1, col2 = st.columns([1, 1])
-    with col1:
-        st.subheader("Welcome to Software Inc")
-        st.write("""
-        We deliver high-performance software solutions tailored to modern business needs. 
-        From custom management systems to vision-based interaction, our code is built 
-        to scale and succeed.
-        """)
-        st.button("View Portfolio")
-    with col2:
-        st.image("https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=800", caption="Precision Engineering")
+st.write("##") # Spacer
 
-# --- PAGE: SERVICES ---
-elif page == "Services":
-    st.title("Our Services")
-    c1, c2, c3 = st.columns(3)
-    
-    with c1:
-        st.markdown("""<div class="service-card">
-            <h3 style="color:#3b82f6 !important">Web Apps</h3>
-            <p>Full-stack Python and HTML development for business ledgers and management systems.</p>
-        </div>""", unsafe_allow_html=True)
-    with c2:
-        st.markdown("""<div class="service-card">
-            <h3 style="color:#10b981 !important">AI Systems</h3>
-            <p>Specialized vision-based hand gesture interaction and automated toolkits.</p>
-        </div>""", unsafe_allow_html=True)
-    with c3:
-        st.markdown("""<div class="service-card">
-            <h3 style="color:#f59e0b !important">Campus Tech</h3>
-            <p>Interactive navigation tools and campus-specific software ecosystems.</p>
-        </div>""", unsafe_allow_html=True)
+# Portfolio / Projects Section
+st.markdown("### Featured Solutions")
+col1, col2 = st.columns(2)
 
-# --- PAGE: PORTFOLIO ---
-elif page == "Portfolio":
-    st.title("Portfolio")
-    
-    # Project 1
-    with st.container():
-        c_img, c_txt = st.columns([1, 2])
-        with c_img:
-            st.image("https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400")
-        with c_txt:
-            st.subheader("Campus Lens")
-            st.write("A comprehensive navigation tool built for SIMATS to streamline campus mobility.")
-            st.markdown("`Python` `Streamlit` `Computer Vision`")
+with col1:
+    st.markdown('<div class="portfolio-card">', unsafe_allow_html=True)
+    st.image("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400", use_container_width=True)
+    st.subheader("Campus Lens")
+    st.write("A vision-based navigation tool designed to help students navigate educational campuses efficiently.")
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# --- PAGE: CONTACT ---
-elif page == "Contact":
-    st.title("Contact Us")
-    with st.form("contact"):
-        st.text_input("Company Name")
-        st.text_input("Work Email")
-        st.text_area("How can we help?")
-        if st.form_submit_button("Send Inquiry"):
-            st.success("Your message was sent into the void (just kidding, we'll get back to you!)")
+with col2:
+    st.markdown('<div class="portfolio-card">', unsafe_allow_html=True)
+    st.image("https://images.unsplash.com/photo-1454165205744-3b78555e5572?w=400", use_container_width=True)
+    st.subheader("Business Ledger System")
+    st.write("Robust software for retail store management, inventory tracking, and financial ledgers.")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+st.divider()
+
+# Footer-style Contact Section
+st.markdown("<h3 style='text-align: center;'>Let's Build Together</h3>", unsafe_allow_html=True)
+contact_col1, contact_col2, contact_col3 = st.columns([1, 2, 1])
+with contact_col2:
+    with st.form("clean_contact"):
+        st.text_input("Name")
+        st.text_input("Email")
+        st.text_area("Message")
+        st.form_submit_button("Submit")
