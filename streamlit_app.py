@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# 2. Custom CSS for Top-Right Dropdown & Dark Theme
+# 2. Custom CSS for Top-Right Dropdown, Dark Theme, and Team Cards
 st.markdown("""
     <style>
     /* Hide the default sidebar */
@@ -33,13 +33,20 @@ st.markdown("""
         border: 1px solid #30363D !important;
     }
     
-    /* Founder Section Card */
-    .founder-card {
+    /* Section Cards */
+    .custom-card {
         background-color: #161B22;
         padding: 2rem;
         border-radius: 15px;
         border: 1px solid #30363D;
         margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Team Image Styling */
+    .team-img img {
+        border-radius: 10px;
+        border: 1px solid #3b82f6;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -51,7 +58,6 @@ with header_left:
     st.markdown("# Software <span style='color:#3b82f6;'>Inc.</span>", unsafe_allow_html=True)
 
 with header_right:
-    # Navigation Dropdown
     page = st.selectbox(
         "Menu",
         ["Home", "Services", "Portfolio", "Contact"],
@@ -63,57 +69,84 @@ st.divider()
 # --- PAGE: HOME ---
 if page == "Home":
     st.write("### Engineering Tomorrow's Solutions Today")
-    st.image("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000")
+    st.image("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200")
     
     # FOUNDERS SECTION
-    st.markdown('<div class="founder-card">', unsafe_allow_html=True)
+    st.markdown('<div class="custom-card">', unsafe_allow_html=True)
     f_col1, f_col2 = st.columns([1, 2])
     
     with f_col1:
-        # Placeholder for Founder Image
+        # Professional headshot or edited creator image
         st.image("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400", 
-                 caption="Lead Developer & Founder")
+                 caption="Founder & Lead Architect")
     
     with f_col2:
-        st.subheader("Our Founder")
+        st.subheader("Meet the Founder")
         st.write("""
-        Driven by a passion for technical innovation and digital storytelling. 
+        Bridging the gap between creative storytelling and technical excellence. 
         As an **Instagram creator** and **Software Engineer**, our founder specializes in 
-        bridging the gap between complex code and user-centric design.
-        """)
-        st.write("""
-        Notable projects include a **Vision-based Hand Gesture Interaction system** 
-        and the **Campus Lens navigation tool**, which gained significant interest for 
-        large-scale implementation.
+        delivering user-centric digital tools like the **Campus Lens** navigation system.
         """)
         st.markdown("""
-        - **Expertise:** Python, HTML, Web Apps, AI
-        - **Projects:** Campus Lens, Management Systems, Retail Ledger
+        - 🎓 **Developer of Campus Lens** (Developed for SIMATS)
+        - 📸 **Digital Content Creator**
+        - 🛠️ **Tech Stack:** Python, HTML, Computer Vision
         """)
     st.markdown('</div>', unsafe_allow_html=True)
 
+    # TEAM SECTION
+    st.write("---")
+    st.header("Our Team")
+    st.write("The collaborative power behind Software Inc.")
+
+    # 5 Team Members in a Grid
+    row1_col1, row1_col2, row1_col3 = st.columns(3)
+    row2_col1, row2_col2, _ = st.columns(3)
+
+    team = [
+        {"name": "Team Member 1", "desc": "Expert in Python backend and data architecture.", "img": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400"},
+        {"name": "Team Member 2", "desc": "Specializes in UI/UX design and frontend HTML.", "img": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400"},
+        {"name": "Team Member 3", "desc": "Focuses on AI integration and vision systems.", "img": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400"},
+        {"name": "Team Member 4", "desc": "Handles cloud infrastructure and security.", "img": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400"},
+        {"name": "Team Member 5", "desc": "Specialist in large-scale software deployment.", "img": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400"},
+    ]
+
+    t_cols = [row1_col1, row1_col2, row1_col3, row2_col1, row2_col2]
+
+    for i, member in enumerate(team):
+        with t_cols[i]:
+            st.image(member["img"], use_container_width=True)
+            st.subheader(member["name"])
+            st.write(member["desc"])
+            st.write("") # Spacer
+
 # --- PAGE: SERVICES ---
 elif page == "Services":
-    st.title("Services")
+    st.title("Our Expertise")
     s1, s2 = st.columns(2)
     with s1:
-        st.info("### Web & Management")
-        st.write("Custom builds for Doctor Management, Voting Systems, and Business Ledgers.")
+        st.info("### Web & Management Systems")
+        st.write("Custom builds for business ledgers, salary management, and voting systems.")
     with s2:
-        st.success("### AI & Navigation")
-        st.write("Specialized vision-based tools and campus-wide navigation ecosystems.")
+        st.success("### AI & Campus Technology")
+        st.write("Development of interactive tools like Campus Lens and vision-based interaction.")
 
 # --- PAGE: PORTFOLIO ---
 elif page == "Portfolio":
-    st.title("Project Portfolio")
-    st.subheader("Campus Lens")
-    st.write("A campus navigation tool recognized for its utility and scale.")
+    st.title("Projects")
+    st.subheader("Campus Lens: Navigation Tool")
+    st.write("Developed for SIMATS, this tool provides real-time navigation and has been scaled for campus-wide use.")
     st.image("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600")
+    st.divider()
+    st.subheader("Business Ledger System")
+    st.write("A secure retail management portal for handling transactions and inventory.")
 
 # --- PAGE: CONTACT ---
 elif page == "Contact":
-    st.title("Contact")
+    st.title("Get In Touch")
     with st.form("contact"):
-        st.text_input("Name")
-        st.text_area("How can we help?")
-        st.form_submit_button("Send")
+        st.text_input("Full Name")
+        st.text_input("Email")
+        st.text_area("Tell us about your project")
+        if st.form_submit_button("Send Message"):
+            st.success("Message received. Our team will reach out to you shortly!")
