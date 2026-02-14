@@ -7,44 +7,54 @@ st.set_page_config(
     layout="wide"
 )
 
-# 2. Custom CSS for Professional Styling
+# 2. Custom CSS for High Contrast and Professional Styling
 st.markdown("""
     <style>
-    /* Main background */
+    /* Force the main background to a very light grey */
     .stApp {
-        background-color: #f8fafc;
+        background-color: #F0F2F6 !important;
     }
     
-    /* Hero section styling */
+    /* Force all standard text to a dark slate color for readability */
+    .stMarkdown, p, span, label {
+        color: #1E293B !important;
+    }
+
+    /* Force Headings to be nearly black */
+    h1, h2, h3, h4, h5, h6 {
+        color: #0F172A !important;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Hero section with a dark blue background and WHITE text */
     .hero-container {
         padding: 3rem;
-        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
         border-radius: 15px;
-        color: white;
-        text-align: center;
         margin-bottom: 2rem;
+        box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
     }
     
-    /* Custom Card styling for Services/Portfolio */
-    .card {
-        padding: 1.5rem;
+    /* Ensure Hero text stays white specifically */
+    .hero-container h1, .hero-container p {
+        color: #FFFFFF !important;
+    }
+
+    /* White cards for Services/Portfolio to pop against the light grey background */
+    .project-card {
+        background-color: #FFFFFF !important;
+        padding: 20px;
         border-radius: 10px;
-        background-color: white;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        height: 100%;
+        border: 1px solid #E2E8F0;
+        margin-bottom: 10px;
     }
-    
-    h1, h2, h3 {
-        color: #1e293b;
-    }
-    
-    .hero-container h1 {
-        color: white !important;
+
+    /* Sidebar text color */
+    [data-testid="stSidebar"] .stMarkdown {
+        color: #FFFFFF !important;
     }
     </style>
     """, unsafe_allow_html=True)
-
 # 3. Sidebar Navigation
 st.sidebar.title("🚀 Software Inc")
 page = st.sidebar.radio("Navigation", ["Home", "Services", "Portfolio", "Contact"])
