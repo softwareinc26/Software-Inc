@@ -2,142 +2,144 @@ import streamlit as st
 
 # 1. Page Configuration
 st.set_page_config(
-    page_title="Software Inc | Digital Solutions",
-    page_icon="💻",
+    page_title="Software Inc | Dark Edition",
+    page_icon="🌙",
     layout="wide"
 )
 
-# 2. Custom CSS for High Contrast and Professional Styling
+# 2. Complete Dark Theme CSS
 st.markdown("""
     <style>
-    /* Force the main background to a very light grey */
+    /* Main Background */
     .stApp {
-        background-color: #F0F2F6 !important;
+        background-color: #0E1117 !important;
     }
     
-    /* Force all standard text to a dark slate color for readability */
-    .stMarkdown, p, span, label {
-        color: #1E293B !important;
+    /* Global Text Color */
+    .stMarkdown, p, span, label, .stSelectbox, .stTextInput {
+        color: #E2E8F0 !important;
     }
 
-    /* Force Headings to be nearly black */
+    /* Headings */
     h1, h2, h3, h4, h5, h6 {
-        color: #0F172A !important;
+        color: #FFFFFF !important;
         font-family: 'Inter', sans-serif;
     }
 
-    /* Hero section with a dark blue background and WHITE text */
-    .hero-container {
-        padding: 3rem;
-        background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
-        border-radius: 15px;
-        margin-bottom: 2rem;
-        box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+    /* Sidebar Styling */
+    [data-testid="stSidebar"] {
+        background-color: #161B22 !important;
+        border-right: 1px solid #30363D;
     }
     
-    /* Ensure Hero text stays white specifically */
-    .hero-container h1, .hero-container p {
-        color: #FFFFFF !important;
+    /* Hero Section - Deep Gradient */
+    .hero-container {
+        padding: 4rem 2rem;
+        background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+        border: 1px solid #334155;
+        border-radius: 20px;
+        text-align: center;
+        margin-bottom: 3rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    /* White cards for Services/Portfolio to pop against the light grey background */
-    .project-card {
-        background-color: #FFFFFF !important;
-        padding: 20px;
-        border-radius: 10px;
-        border: 1px solid #E2E8F0;
-        margin-bottom: 10px;
+    /* Service Cards */
+    .service-card {
+        background-color: #161B22 !important;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #30363D;
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+    .service-card:hover {
+        border-color: #3b82f6;
+        transform: translateY(-5px);
     }
 
-    /* Sidebar text color */
-    [data-testid="stSidebar"] .stMarkdown {
-        color: #FFFFFF !important;
+    /* Input Fields & Forms */
+    input, textarea {
+        background-color: #0D1117 !important;
+        color: white !important;
+        border: 1px solid #30363D !important;
+    }
+
+    /* Buttons */
+    .stButton>button {
+        background: linear-gradient(90deg, #3b82f6, #2563eb) !important;
+        color: white !important;
+        border: none !important;
+        font-weight: bold !important;
     }
     </style>
     """, unsafe_allow_html=True)
+
 # 3. Sidebar Navigation
 st.sidebar.title("🚀 Software Inc")
-page = st.sidebar.radio("Navigation", ["Home", "Services", "Portfolio", "Contact"])
+page = st.sidebar.radio("Navigate", ["Home", "Services", "Portfolio", "Contact"])
 
 # --- PAGE: HOME ---
 if page == "Home":
     st.markdown("""
         <div class="hero-container">
-            <h1>Engineering the Next Generation of Software</h1>
-            <p style="font-size: 1.2rem;">We transform complex challenges into elegant, scalable digital experiences.</p>
+            <h1 style="font-size: 3rem; margin-bottom: 10px;">Building the Future, <span style="color: #3b82f6;">Line by Line.</span></h1>
+            <p style="font-size: 1.2rem; color: #94A3B8 !important;">Specializing in AI-driven tools, web applications, and campus solutions.</p>
         </div>
     """, unsafe_allow_html=True)
 
     col1, col2 = st.columns([1, 1])
     with col1:
-        st.subheader("Why Partner With Us?")
+        st.subheader("Welcome to Software Inc")
         st.write("""
-        At Software Inc, we don't just write code; we build assets. Whether you need a 
-        robust business ledger system or a cutting-edge campus navigation tool, our 
-        team delivers performance-driven results.
+        We deliver high-performance software solutions tailored to modern business needs. 
+        From custom management systems to vision-based interaction, our code is built 
+        to scale and succeed.
         """)
-        st.button("Explore Our Work")
+        st.button("View Portfolio")
     with col2:
-        st.image("https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800", caption="Code is our Craft")
+        st.image("https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&fit=crop&w=800", caption="Precision Engineering")
 
 # --- PAGE: SERVICES ---
 elif page == "Services":
-    st.title("Our Expertise")
-    st.write("Specialized solutions tailored to your business needs.")
-    
+    st.title("Our Services")
     c1, c2, c3 = st.columns(3)
+    
     with c1:
-        st.info("### Web Development")
-        st.write("Developing dynamic web applications using Python, HTML, and modern frameworks.")
+        st.markdown("""<div class="service-card">
+            <h3 style="color:#3b82f6 !important">Web Apps</h3>
+            <p>Full-stack Python and HTML development for business ledgers and management systems.</p>
+        </div>""", unsafe_allow_html=True)
     with c2:
-        st.success("### AI & Automation")
-        st.write("Vision-based systems and gesture interaction for the next tech frontier.")
+        st.markdown("""<div class="service-card">
+            <h3 style="color:#10b981 !important">AI Systems</h3>
+            <p>Specialized vision-based hand gesture interaction and automated toolkits.</p>
+        </div>""", unsafe_allow_html=True)
     with c3:
-        st.warning("### Management Systems")
-        st.write("Custom-built salary, doctor, and voting management portals.")
+        st.markdown("""<div class="service-card">
+            <h3 style="color:#f59e0b !important">Campus Tech</h3>
+            <p>Interactive navigation tools and campus-specific software ecosystems.</p>
+        </div>""", unsafe_allow_html=True)
 
 # --- PAGE: PORTFOLIO ---
 elif page == "Portfolio":
-    st.title("Featured Projects")
-    st.write("A glimpse into our successful deployments.")
+    st.title("Portfolio")
     
-    # Project 1: Campus Navigation
+    # Project 1
     with st.container():
-        col_img, col_txt = st.columns([1, 2])
-        with col_img:
-            st.image("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400")
-        with col_txt:
-            st.subheader("Campus Lens: Navigation Tool")
-            st.write("""
-            An interactive navigation tool designed for educational institutions (like SIMATS) 
-            to help students and visitors find their way easily across campus.
-            """)
-            st.markdown("**Tech Stack:** Python, Streamlit, Web Tech")
-
-    st.divider()
-
-    # Project 2: Business Ledger
-    with st.container():
-        col_img, col_txt = st.columns([1, 2])
-        with col_img:
-            st.image("https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=400")
-        with col_txt:
-            st.subheader("Retail & Ledger Management")
-            st.write("Secure systems for managing business ledgers and retail inventory.")
-            st.markdown("**Tech Stack:** Python, Database Integration")
+        c_img, c_txt = st.columns([1, 2])
+        with c_img:
+            st.image("https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400")
+        with c_txt:
+            st.subheader("Campus Lens")
+            st.write("A comprehensive navigation tool built for SIMATS to streamline campus mobility.")
+            st.markdown("`Python` `Streamlit` `Computer Vision`")
 
 # --- PAGE: CONTACT ---
 elif page == "Contact":
-    st.title("Get In Touch")
-    st.write("Ready to start your project? Let’s connect.")
-    
-    with st.form("contact_form"):
-        name = st.text_input("Name")
-        email = st.text_input("Email")
-        msg = st.text_area("How can we help you?")
-        
-        if st.form_submit_button("Submit Request"):
-            if name and email:
-                st.success(f"Thank you, {name}! Our software team will contact you at {email} soon.")
-            else:
-                st.error("Please fill in your name and email.")
+    st.title("Contact Us")
+    with st.form("contact"):
+        st.text_input("Company Name")
+        st.text_input("Work Email")
+        st.text_area("How can we help?")
+        if st.form_submit_button("Send Inquiry"):
+            st.success("Your message was sent into the void (just kidding, we'll get back to you!)")
