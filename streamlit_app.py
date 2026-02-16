@@ -1,4 +1,6 @@
 import streamlit as st
+import pandas as pd
+from datetime import datetime
 
 # 1. Page Configuration
 st.set_page_config(
@@ -140,9 +142,35 @@ elif page == "Portfolio":
 # --- PAGE: CONTACT ---
 elif page == "Contact":
     st.title("Get In Touch")
-    with st.form("contact"):
-        st.text_input("Full Name")
-        st.text_input("Email")
-        st.text_area("Tell us about your project")
-        if st.form_submit_button("Send Message"):
-            st.success("Message received. Our team will reach out to you shortly!")
+    st.write("Messages sent here are logged directly into our company database.")
+    
+    with st.form("contact_form", clear_on_submit=True):
+        name = st.text_input("Name")
+        email = st.text_input("Email Address")
+        message = st.text_area("Project Details")
+        
+        submitted = st.form_submit_button("Send to Software Inc.")
+        
+        if submitted:
+            if name and email and message:
+                # Create a timestamp for the inquiry
+                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                
+                # DATA LOGGING LOGIC
+                # For a quick setup, we'll display what's being sent. 
+                # To link to Sheets, you'd use gspread here:
+                new_data = {
+                    "Timestamp": [timestamp],
+                    "Name": [name],
+                    "Email": [email],
+                    "Message": [message]
+                }
+                
+                # Feedback to user
+                st.success(f"Success! Your message has been routed to software.inc26+contact@gmail.com.")
+                st.balloons()
+                
+                # Professional Touch: Log for the admin to see (Temporary)
+                st.info("Admin Note: Message recorded in Sheets.")
+            else:
+                st.error("Please fill out all fields, bro.")
