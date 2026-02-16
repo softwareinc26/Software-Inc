@@ -3,7 +3,7 @@ import streamlit as st
 # 1. Page Configuration
 st.set_page_config(
     page_title="Software Inc | Innovation",
-    page_icon="🌙",
+    page_icon="SI",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -76,9 +76,7 @@ if page == "Home":
     f_col1, f_col2 = st.columns([1, 2])
     
     with f_col1:
-        # Professional headshot or edited creator image
-        st.image("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400", 
-                 caption="Founder & Lead Architect")
+
     
     with f_col2:
         st.subheader("Meet the Founder")
@@ -104,11 +102,11 @@ if page == "Home":
     row2_col1, row2_col2, _ = st.columns(3)
 
     team = [
-        {"name": "Team Member 1", "desc": "Expert in Python backend and data architecture.", "img": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400"},
-        {"name": "Team Member 2", "desc": "Specializes in UI/UX design and frontend HTML.", "img": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400"},
-        {"name": "Team Member 3", "desc": "Focuses on AI integration and vision systems.", "img": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400"},
-        {"name": "Team Member 4", "desc": "Handles cloud infrastructure and security.", "img": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400"},
-        {"name": "Team Member 5", "desc": "Specialist in large-scale software deployment.", "img": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400"},
+        {"Jaya Harish J": "Developer", "desc": "Expert in Python backend and data architecture.", "img": ""},
+        {"Sabareesh M": "UI/UX", "desc": "Specializes in UI/UX design and frontend HTML.", "img": ""},
+        {"Ashwin S": "Database", "desc": "Focuses on AI integration and vision systems.", "img": ""},
+        {"Kamesh R": "Social Media", "desc": "Handles Social media & Marketing Dept", "img": ""},
+        {"Divyesh S P": "Customer Support", "desc": "Helping our company grow big.", "img": ""},
     ]
 
     t_cols = [row1_col1, row1_col2, row1_col3, row2_col1, row2_col2]
