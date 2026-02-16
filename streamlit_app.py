@@ -75,9 +75,7 @@ if page == "Home":
     st.markdown('<div class="custom-card">', unsafe_allow_html=True)
     f_col1, f_col2 = st.columns([1, 2])
     
-    with f_col1:
 
-    
     with f_col2:
         st.subheader("Meet the Founder")
         st.write("""
