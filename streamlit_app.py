@@ -79,17 +79,11 @@ if page == "Home":
     
 
     with f_col2:
-        st.subheader("hello")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    # TEAM SECTION
-    st.write("---")
     st.header("Our Team")
     st.write("The collaborative power behind Software Inc.")
 
-    # 5 Team Members in a Grid
     row1_col1, row1_col2, row1_col3 = st.columns(3)
-    row2_col1, row2_col2, _ = st.columns(3)
+    row2_col1, row2_col2, _ = st.columns(1)
 
     team = [
         {"name": "Harish J", "desc": "Expert in Python backend and data architecture.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
