@@ -79,17 +79,7 @@ if page == "Home":
     
 
     with f_col2:
-        st.subheader("Meet the Founder")
-        st.write("""
-        Bridging the gap between creative storytelling and technical excellence. 
-        As an **Instagram creator** and **Software Engineer**, our founder specializes in 
-        delivering user-centric digital tools like the **Campus Lens** navigation system.
-        """)
-        st.markdown("""
-        - 🎓 **Developer of Campus Lens** (Developed for SIMATS)
-        - 📸 **Digital Content Creator**
-        - 🛠️ **Tech Stack:** Python, HTML, Computer Vision
-        """)
+        st.subheader("hello")
     st.markdown('</div>', unsafe_allow_html=True)
 
     # TEAM SECTION
