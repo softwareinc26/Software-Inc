@@ -79,28 +79,28 @@ if page == "Home":
     
 
     with f_col2:
-    st.header("Our Team")
-    st.write("The collaborative power behind Software Inc.")
+        st.header("Our Team")
+        st.write("The collaborative power behind Software Inc.")
 
-    row1_col1, row1_col2, row1_col3 = st.columns(3)
-    row2_col1, row2_col2, _ = st.columns(1)
+        row1_col1, row1_col2, row1_col3 = st.columns(3)
+        row2_col1, row2_col2, _ = st.columns(1)
 
-    team = [
+        team = [
         {"name": "Harish J", "desc": "Expert in Python backend and data architecture.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
         {"name": "Sabareesh M", "desc": "Specializes in UI/UX design and frontend HTML.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
         {"name": "Ashwin S", "desc": "Focuses on AI integration and vision systems.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
         {"name": "Kamesh R", "desc": "Handles Social media & Marketing Dept", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
         {"name": "Divyesh S P", "desc": "Helping our company grow big.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
-    ]
+        ]
 
-    t_cols = [row1_col1, row1_col2, row1_col3, row2_col1, row2_col2]
+        t_cols = [row1_col1, row1_col2, row1_col3, row2_col1, row2_col2]
 
-    for i, member in enumerate(team):
-        with t_cols[i]:
-            st.image(member["img"], use_container_width=True)
-            st.subheader(member["name"])
-            st.write(member["desc"])
-            st.write("") # Spacer
+        for i, member in enumerate(team):
+            with t_cols[i]:
+                st.image(member["img"], use_container_width=True)
+                st.subheader(member["name"])
+                st.write(member["desc"])
+                st.write("") # Spacer
 
 # --- PAGE: SERVICES ---
 elif page == "Services":
