@@ -58,7 +58,7 @@ if page == "Home":
 
     # Fixed Team Grid Logic
     team = [
-        {"name": "Harish J", "desc": "Expert in Python backend and data architecture.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
+        {"name": "Jaya Harish J", "desc": "Expert in Python backend and data architecture.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
         {"name": "Sabareesh M", "desc": "Specializes in UI/UX design and frontend HTML.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
         {"name": "Ashwin S", "desc": "Focuses on AI integration and vision systems.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
         {"name": "Kamesh R", "desc": "Handles Social media & Marketing Dept", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
