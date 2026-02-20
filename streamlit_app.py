@@ -52,7 +52,7 @@ if page == "Home":
     st.write("### Engineering Tomorrow's Solutions Today")
     st.image("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200")
     
-    st.markdown('<div class="custom-card">', unsafe_allow_html=True)
+
     st.header("Our Team")
     st.write("The collaborative power behind Software Inc.")
 
