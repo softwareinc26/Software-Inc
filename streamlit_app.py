@@ -10,32 +10,17 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# 2. Custom CSS for Top-Right Dropdown, Dark Theme, and Team Cards
+# 2. Custom CSS
 st.markdown("""
     <style>
-    /* Hide the default sidebar */
     [data-testid="stSidebar"] { display: none; }
-
-    /* Main Dark Background */
-    .stApp {
-        background-color: #0E1117 !important;
-    }
-
-    /* Force text colors for readability */
-    .stMarkdown, p, span, label {
-        color: #E2E8F0 !important;
-    }
-    h1, h2, h3 {
-        color: #FFFFFF !important;
-    }
-
-    /* Dropdown Styling */
+    .stApp { background-color: #0E1117 !important; }
+    .stMarkdown, p, span, label { color: #E2E8F0 !important; }
+    h1, h2, h3 { color: #FFFFFF !important; }
     .stSelectbox div[data-baseweb="select"] {
         background-color: #161B22 !important;
         border: 1px solid #30363D !important;
     }
-    
-    /* Section Cards */
     .custom-card {
         background-color: #161B22;
         padding: 2rem;
@@ -44,16 +29,10 @@ st.markdown("""
         margin-top: 2rem;
         margin-bottom: 2rem;
     }
-
-    /* Team Image Styling */
-    .team-img img {
-        border-radius: 10px;
-        border: 1px solid #3b82f6;
-    }
     </style>
     """, unsafe_allow_html=True)
 
-# 3. Layout: Title on Left, Dropdown on Right
+# 3. Layout: Title and Navigation
 header_left, header_right = st.columns([4, 1])
 
 with header_left:
@@ -73,34 +52,28 @@ if page == "Home":
     st.write("### Engineering Tomorrow's Solutions Today")
     st.image("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200")
     
-    # FOUNDERS SECTION
     st.markdown('<div class="custom-card">', unsafe_allow_html=True)
-    f_col1, f_col2 = st.columns([1, 2])
-    
+    st.header("Our Team")
+    st.write("The collaborative power behind Software Inc.")
 
-    with f_col2:
-        st.header("Our Team")
-        st.write("The collaborative power behind Software Inc.")
-
-        row1_col1, row1_col2, row1_col3 = st.columns(3)
-        row2_col1, row2_col2, _ = st.columns(1)
-
-        team = [
+    # Fixed Team Grid Logic
+    team = [
         {"name": "Harish J", "desc": "Expert in Python backend and data architecture.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
         {"name": "Sabareesh M", "desc": "Specializes in UI/UX design and frontend HTML.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
         {"name": "Ashwin S", "desc": "Focuses on AI integration and vision systems.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
         {"name": "Kamesh R", "desc": "Handles Social media & Marketing Dept", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
         {"name": "Divyesh S P", "desc": "Helping our company grow big.", "img": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"},
-        ]
+    ]
 
-        t_cols = [row1_col1, row1_col2, row1_col3, row2_col1, row2_col2]
-
-        for i, member in enumerate(team):
-            with t_cols[i]:
-                st.image(member["img"], use_container_width=True)
-                st.subheader(member["name"])
-                st.write(member["desc"])
-                st.write("") # Spacer
+    # Create a grid of 3 columns
+    cols = st.columns(3)
+    for i, member in enumerate(team):
+        with cols[i % 3]: # This cycles through the 3 columns
+            st.image(member["img"], use_container_width=True)
+            st.subheader(member["name"])
+            st.write(member["desc"])
+            st.write("---") 
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # --- PAGE: SERVICES ---
 elif page == "Services":
@@ -117,7 +90,7 @@ elif page == "Services":
 elif page == "Portfolio":
     st.title("Projects")
     st.subheader("Campus Lens: Navigation Tool")
-    st.write("Developed for SIMATS, this tool provides real-time navigation and has been scaled for campus-wide use.")
+    st.write("Developed for SIMATS, this tool provides real-time navigation.")
     st.image("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600")
     st.divider()
     st.subheader("Business Ledger System")
@@ -126,35 +99,16 @@ elif page == "Portfolio":
 # --- PAGE: CONTACT ---
 elif page == "Contact":
     st.title("Get In Touch")
-    st.write("Messages sent here are logged directly into our company database.")
     
     with st.form("contact_form", clear_on_submit=True):
         name = st.text_input("Name")
         email = st.text_input("Email Address")
         message = st.text_area("Project Details")
-        
         submitted = st.form_submit_button("Send to Software Inc.")
         
         if submitted:
             if name and email and message:
-                # Create a timestamp for the inquiry
-                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                
-                # DATA LOGGING LOGIC
-                # For a quick setup, we'll display what's being sent. 
-                # To link to Sheets, you'd use gspread here:
-                new_data = {
-                    "Timestamp": [timestamp],
-                    "Name": [name],
-                    "Email": [email],
-                    "Message": [message]
-                }
-                
-                # Feedback to user
-                st.success(f"Success! Your message has been routed to software.inc26+contact@gmail.com.")
+                st.success(f"Success! Your message has been routed to the team.")
                 st.balloons()
-                
-                # Professional Touch: Log for the admin to see (Temporary)
-                st.info("Admin Note: Message recorded in Sheets.")
             else:
-                st.error("Please fill out all fields, bro.")
+                st.error("Please fill out all fields.")
